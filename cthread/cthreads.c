@@ -14,6 +14,7 @@ TCB_t* searchTID(PFILA2 pFila, int tid);
 int tid = 0;
 
 /* Filas */
+
 FILA2 aptoAltaPrior
 PFILA2 APTO_ALTA = &aptoAltaPrior
 FILA2 aptoMediaPrior
@@ -45,7 +46,12 @@ int ccreate (void *(*start) (void *), void *arg, int prio)
 	*/
 
 	new_thread = (TCB_t*) malloc(sizeof(TCB_t));
-
+	
+	new_thread->tid = tid;
+	new_thread->prio = prio; // a prioridade da thread foi passada como parâmetro 
+	
+	
+	
 	/* Making thread context */
 	getcontext(&new_thread->context);
 	new_thread->context.uc_stack.ss_sp = (char*) malloc(SIGSTKSZ);
