@@ -27,6 +27,7 @@ PFILA2 F_EXECUTANDO = &filaExecutando
 FILA2 filaJoin
 PFILA2 JOIN = &filaJoin
 
+int identificadorThread = 0;
 
 /* Ponteiro para o TCB em execução */
 TCB_t *EXECUTANDO;
@@ -45,6 +46,9 @@ int ccreate (void *(*start) (void *), void *arg, int prio)
 	*/
 
 	new_thread = (TCB_t*) malloc(sizeof(TCB_t));
+	
+	new_thread->prio = prio;
+	new_thread->tid = identificadorThread;
 
 	/* Making thread context */
 	getcontext(&new_thread->context);
